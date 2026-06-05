@@ -1,0 +1,770 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kiona Skin Clinic — Banjarbaru</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Manrope:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --ivory:#F8F6F2;--gold:#C7A86B;--gold-light:#DFC48E;--gold-dim:rgba(199,168,107,0.15);
+  --champagne:#E8DDCF;--warm-gray:#A9A29B;--dark:#2B2B2B;--nude:#F0E9E0;
+  --white:#FEFEFE;--maroon:#8B2020;
+}
+html{scroll-behavior:smooth}
+body{font-family:'Manrope',sans-serif;background:var(--ivory);color:var(--dark);overflow-x:hidden}
+
+/* ─── PAGE SYSTEM ─── */
+.page{display:none;animation:fadeIn 0.45s ease}
+.page.active{display:block}
+@keyframes fadeIn{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
+
+/* ─── NAV ─── */
+nav{
+  position:fixed;top:0;left:0;right:0;z-index:200;
+  padding:0 52px;height:68px;
+  display:flex;align-items:center;justify-content:space-between;
+  background:rgba(248,246,242,0.93);backdrop-filter:blur(20px);
+  border-bottom:1px solid rgba(199,168,107,0.2);
+}
+.nav-logo{font-family:'Cormorant Garamond',serif;font-size:1.45rem;font-weight:500;
+  letter-spacing:0.06em;color:var(--dark);cursor:pointer;user-select:none}
+.nav-logo span{color:var(--gold)}
+.nav-links{display:flex;gap:0;list-style:none}
+.nav-links li a{
+  display:block;padding:0 18px;height:68px;line-height:68px;
+  font-size:0.7rem;letter-spacing:0.13em;text-transform:uppercase;
+  color:var(--warm-gray);text-decoration:none;cursor:pointer;
+  border-bottom:2px solid transparent;transition:color 0.3s,border-color 0.3s;
+}
+.nav-links li a:hover,.nav-links li a.active{color:var(--gold);border-bottom-color:var(--gold)}
+.nav-cta{
+  background:var(--gold);color:var(--white);border:none;
+  padding:10px 24px;font-family:'Manrope',sans-serif;font-size:0.7rem;
+  letter-spacing:0.14em;text-transform:uppercase;cursor:pointer;
+  transition:background 0.3s,transform 0.2s;
+}
+.nav-cta:hover{background:var(--dark);transform:translateY(-1px)}
+
+/* ─── UTILS ─── */
+.section{padding:96px 64px}
+.section-tag{font-size:0.63rem;letter-spacing:0.25em;text-transform:uppercase;color:var(--gold);margin-bottom:12px}
+.section-title{font-family:'Cormorant Garamond',serif;font-size:clamp(1.9rem,3vw,2.8rem);
+  font-weight:300;line-height:1.2;color:var(--dark);margin-bottom:14px}
+.section-sub{font-size:0.83rem;line-height:1.8;color:var(--warm-gray);max-width:500px;margin-bottom:48px}
+.btn-gold{background:var(--gold);color:var(--white);border:none;padding:12px 28px; 
+  font-family:'Manrope',sans-serif;font-size:0.7rem;letter-spacing:0.15em;
+  text-transform:uppercase;cursor:pointer;transition:all 0.3s;display:inline-block;text-decoration:none}
+.btn-gold:hover{background:var(--dark);transform:translateY(-2px);box-shadow:0 8px 24px rgba(43,43,43,0.18)}
+.btn-outline{background:transparent;color:var(--dark);border:1px solid rgba(43,43,43,0.3);
+  padding:12px 28px;font-family:'Manrope',sans-serif;font-size:0.7rem;letter-spacing:0.15em;
+  text-transform:uppercase;cursor:pointer;transition:all 0.3s;display:inline-block;text-decoration:none}
+.btn-outline:hover{border-color:var(--gold);color:var(--gold)}
+@keyframes fadeUp{from{opacity:0;transform:translateY(28px)}to{opacity:1;transform:none}}
+@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-16px)}}
+
+/* ════════════════════════════════
+   PAGE: HOME
+════════════════════════════════ */
+/* Hero */
+.hero{min-height:100vh;display:grid;grid-template-columns:1fr 1fr;position:relative;overflow:hidden}
+.hero-left{display:flex;flex-direction:column;justify-content:center;padding:120px 64px 80px;z-index:2}
+.hero-eyebrow{font-size:0.67rem;letter-spacing:0.22em;text-transform:uppercase;color:var(--gold);
+  margin-bottom:20px;animation:fadeUp 0.8s 0.1s ease both}
+.hero-title{font-family:'Cormorant Garamond',serif;font-size:clamp(2.8rem,4.5vw,4.6rem);
+  font-weight:300;line-height:1.08;margin-bottom:22px;animation:fadeUp 0.8s 0.25s ease both}
+.hero-title em{font-style:italic;color:var(--gold)}
+.hero-sub{font-size:0.85rem;line-height:1.85;color:var(--warm-gray);max-width:370px;
+  margin-bottom:38px;animation:fadeUp 0.8s 0.4s ease both}
+.hero-actions{display:flex;gap:12px;flex-wrap:wrap;animation:fadeUp 0.8s 0.55s ease both}
+.hero-stats{display:flex;gap:36px;margin-top:52px;padding-top:36px;
+  border-top:1px solid rgba(199,168,107,0.2);animation:fadeUp 0.8s 0.7s ease both}
+.stat-num{font-family:'Cormorant Garamond',serif;font-size:2rem;font-weight:500;color:var(--gold);line-height:1}
+.stat-label{font-size:0.62rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--warm-gray);margin-top:3px}
+.hero-right{position:relative;overflow:hidden}
+.hero-bg{position:absolute;inset:0;background:linear-gradient(135deg,var(--champagne),#D0BCA8)}
+.hero-overlay{position:absolute;inset:0;background:linear-gradient(to right,var(--ivory) 0%,transparent 30%);z-index:1}
+.hero-visual{position:absolute;inset:0;z-index:0;display:flex;align-items:center;justify-content:center}
+.hero-orb{width:420px;height:420px;border-radius:50%;
+  background:radial-gradient(circle at 35% 35%,#EDE0CF,#C4AA90);
+  box-shadow:0 40px 100px rgba(199,168,107,0.3);animation:float 6s ease-in-out infinite;
+  position:relative}
+.hero-orb::after{content:'';position:absolute;top:15%;left:20%;right:20%;bottom:15%;
+  border-radius:50%;background:radial-gradient(circle at 40% 30%,rgba(255,255,255,0.55),transparent 60%)}
+.hero-badge{position:absolute;bottom:56px;right:44px;z-index:2;
+  background:rgba(248,246,242,0.94);backdrop-filter:blur(14px);
+  border:1px solid rgba(199,168,107,0.3);padding:16px 24px;
+  display:flex;flex-direction:column;align-items:center;gap:3px;
+  animation:fadeUp 1s 0.9s ease both}
+.badge-label{font-size:0.6rem;letter-spacing:0.18em;text-transform:uppercase;color:var(--warm-gray)}
+.badge-val{font-family:'Cormorant Garamond',serif;font-size:0.95rem;font-weight:500;color:var(--dark)}
+
+/* ── PHOTO HOLDER (shared) ── */
+.photo-holder{
+  width:100%;height:180px;
+  background:linear-gradient(145deg,#EDE0CF 0%,#D9C8B0 50%,#C8AA90 100%);
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  gap:8px;position:relative;overflow:hidden;flex-shrink:0;
+}
+.photo-holder::before{
+  content:'';position:absolute;inset:0;
+  background:linear-gradient(135deg,rgba(255,255,255,0.22) 0%,transparent 55%);
+  pointer-events:none;z-index:0;
+}
+.photo-holder-icon{font-size:2rem;opacity:0.38;position:relative;z-index:1;line-height:1}
+.photo-holder-label{
+  font-size:0.55rem;letter-spacing:0.2em;text-transform:uppercase;
+  color:rgba(43,43,43,0.38);position:relative;z-index:1;font-family:'Manrope',sans-serif;
+}
+.photo-holder img{width:100%;height:100%;object-fit:cover;position:absolute;inset:0;z-index:2}
+.hp-photo{height:190px !important}
+.ht-photo{height:150px !important}
+.hd-photo{height:240px !important}
+.pc-photo{height:160px !important}
+.treat-photo{height:150px !important}
+.doc-photo{height:280px !important}
+
+/* Home Promo Preview */
+.home-promo-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.hp-card{background:var(--white);border:1px solid rgba(199,168,107,0.15);
+  position:relative;overflow:hidden;transition:all 0.35s;cursor:pointer;
+  display:flex;flex-direction:column;}
+.hp-card:hover{border-color:var(--gold);box-shadow:0 12px 40px rgba(199,168,107,0.15);transform:translateY(-4px)}
+.hp-photo{height:180px;flex-shrink:0}
+.hp-body{padding:24px 26px 28px;display:flex;flex-direction:column;flex:1}
+.hp-tag{display:inline-block;background:var(--gold);color:var(--dark);
+  font-size:0.57rem;letter-spacing:0.12em;text-transform:uppercase;padding:3px 9px;margin-bottom:14px;font-weight:600}
+.hp-tag.red{background:var(--maroon);color:var(--white)}
+.hp-name{font-family:'Cormorant Garamond',serif;font-size:1.25rem;font-weight:400;
+  color:var(--dark);margin-bottom:6px}
+.hp-desc{font-size:0.72rem;line-height:1.65;color:var(--warm-gray);margin-bottom:16px}
+.hp-price-old{font-size:0.72rem;color:var(--warm-gray);text-decoration:line-through;margin-bottom:2px}
+.hp-price{font-family:'Cormorant Garamond',serif;font-size:1.65rem;font-weight:500;color:var(--gold)}
+.hp-disc{display:inline-block;background:var(--maroon);color:var(--white);
+  font-size:0.6rem;font-weight:700;padding:2px 8px;margin-left:8px;letter-spacing:0.06em;vertical-align:middle}
+.hp-cta{margin-top:auto;padding-top:16px;font-size:0.68rem;letter-spacing:0.12em;text-transform:uppercase;
+  color:var(--gold);cursor:pointer;transition:color 0.3s;display:flex;align-items:center;gap:6px}
+.hp-cta:hover{color:var(--dark)}
+.hp-cta::after{content:'→';transition:transform 0.3s}
+.hp-cta:hover::after{transform:translateX(4px)}
+
+/* Home Treatments Preview */
+.home-treat-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+.ht-card{background:var(--white);overflow:hidden;border:1px solid rgba(199,168,107,0.1);
+  transition:all 0.3s;cursor:pointer;display:flex;flex-direction:column;}
+.ht-card:hover{border-color:var(--gold);box-shadow:0 8px 32px rgba(199,168,107,0.14);transform:translateY(-4px)}
+.ht-photo{height:140px;flex-shrink:0}
+.ht-body{padding:20px 22px 24px;display:flex;flex-direction:column;flex:1}
+.ht-name{font-family:'Cormorant Garamond',serif;font-size:1.05rem;font-weight:500;
+  color:var(--dark);margin-bottom:5px}
+.ht-desc{font-size:0.68rem;line-height:1.65;color:var(--warm-gray);margin-bottom:12px;flex:1}
+.ht-from{font-size:0.63rem;letter-spacing:0.08em;color:var(--gold);text-transform:uppercase}
+.ht-from span{font-family:'Cormorant Garamond',serif;font-size:0.92rem;font-weight:500}
+
+/* Home Doctor Preview */
+.home-doc-row{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+.hd-card{border:1px solid rgba(199,168,107,0.18);background:var(--white);
+  overflow:hidden;transition:all 0.3s;cursor:pointer;display:flex;flex-direction:column;}
+.hd-card:hover{border-color:var(--gold);box-shadow:0 10px 36px rgba(199,168,107,0.14)}
+.hd-photo{height:220px;flex-shrink:0}
+.hd-body{padding:24px 26px 28px;text-align:center;display:flex;flex-direction:column;flex:1}
+.hd-name{font-family:'Cormorant Garamond',serif;font-size:1.15rem;font-weight:500;
+  color:var(--dark);margin-bottom:3px}
+.hd-cred{font-size:0.62rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--gold);margin-bottom:14px}
+.hd-tags{display:flex;flex-wrap:wrap;gap:5px;justify-content:center;margin-bottom:18px}
+.hd-tag{font-size:0.58rem;background:var(--nude);color:var(--warm-gray);padding:3px 8px}
+.hd-link{font-size:0.66rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--gold);
+  cursor:pointer;transition:color 0.3s;margin-top:auto}
+.hd-link:hover{color:var(--dark)}
+
+/* Testimonials */
+.testi-section{background:var(--champagne)}
+.testi-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.testi-card{background:var(--white);padding:32px 28px}
+.testi-stars{color:var(--gold);font-size:0.85rem;letter-spacing:4px;margin-bottom:14px}
+.testi-q{font-family:'Cormorant Garamond',serif;font-size:1rem;font-weight:300;
+  font-style:italic;line-height:1.75;color:var(--dark);margin-bottom:20px}
+.testi-auth{display:flex;align-items:center;gap:12px}
+.testi-av{width:34px;height:34px;border-radius:50%;
+  background:linear-gradient(135deg,var(--champagne),#C4AA90);
+  display:flex;align-items:center;justify-content:center;font-size:0.85rem}
+.testi-name{font-size:0.76rem;font-weight:600;color:var(--dark)}
+.testi-treat{font-size:0.64rem;color:var(--warm-gray);margin-top:2px}
+
+/* Booking mini */
+.booking-section{background:var(--dark)}
+.booking-section .section-title{color:var(--ivory)}
+.booking-section .section-sub{color:rgba(232,221,207,0.75)}
+.booking-section .section-tag{color:var(--gold-light)}
+.booking-layout{display:grid;grid-template-columns:1fr 1fr;gap:72px;align-items:start}
+.form-group{display:flex;flex-direction:column;gap:6px;margin-bottom:14px}
+.form-label{font-size:0.61rem;letter-spacing:0.16em;text-transform:uppercase;color:var(--warm-gray)}
+.form-input,.form-select{background:rgba(255,255,255,0.07);border:1px solid rgba(255,255,255,0.13);
+  color:var(--ivory);padding:12px 14px;font-family:'Manrope',sans-serif;font-size:0.8rem;
+  outline:none;transition:border-color 0.3s;appearance:none;width:100%}
+.form-input::placeholder{color:rgba(169,162,155,0.5)}
+.form-input:focus,.form-select:focus{border-color:var(--gold)}
+.form-select option{background:#2B2B2B}
+.info-row{display:flex;gap:14px;padding:20px 0;border-bottom:1px solid rgba(255,255,255,0.07)}
+.info-row:last-child{border:none}
+.info-icon{width:38px;height:38px;background:rgba(199,168,107,0.1);
+  display:flex;align-items:center;justify-content:center;font-size:0.95rem;flex-shrink:0}
+.info-label{font-size:0.6rem;letter-spacing:0.13em;text-transform:uppercase;color:var(--warm-gray);margin-bottom:3px}
+.info-val{font-size:0.8rem;color:var(--ivory);line-height:1.6}
+
+/* ════════════════════════════════
+   PAGE: PROMO
+════════════════════════════════ */
+.promo-hero{background:var(--dark);padding:120px 64px 64px;display:flex;flex-direction:column;align-items:center;text-align:center}
+.promo-hero h1{font-family:'Cormorant Garamond',serif;font-size:clamp(2.5rem,5vw,4rem);
+  font-weight:300;color:var(--ivory);margin-bottom:12px}
+.promo-hero h1 em{font-style:italic;color:var(--gold)}
+.promo-hero p{font-size:0.82rem;color:rgba(169,162,155,0.85);max-width:460px;line-height:1.8}
+.promo-filters{display:flex;gap:8px;margin-top:36px;flex-wrap:wrap;justify-content:center}
+.filter-btn{background:rgba(255,255,255,0.06);color:var(--warm-gray);border:1px solid rgba(255,255,255,0.1);
+  padding:8px 20px;font-family:'Manrope',sans-serif;font-size:0.67rem;letter-spacing:0.1em;
+  text-transform:uppercase;cursor:pointer;transition:all 0.3s}
+.filter-btn.active,.filter-btn:hover{background:var(--gold);color:var(--dark);border-color:var(--gold)}
+
+.promo-content{padding:64px}
+.promo-section-title{font-family:'Cormorant Garamond',serif;font-size:1.8rem;font-weight:300;
+  color:var(--dark);margin-bottom:8px}
+.promo-section-sub{font-size:0.76rem;color:var(--warm-gray);margin-bottom:32px;line-height:1.7}
+.promo-grid-full{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-bottom:56px}
+.pc{background:var(--white);border:1px solid rgba(199,168,107,0.15);
+  transition:all 0.3s;cursor:pointer;position:relative;overflow:hidden;
+  display:flex;flex-direction:column;}
+.pc:hover{border-color:var(--gold);box-shadow:0 10px 36px rgba(199,168,107,0.14);transform:translateY(-4px)}
+.pc-photo{height:160px;flex-shrink:0}
+.pc-body{padding:22px 24px 26px;display:flex;flex-direction:column;flex:1}
+.pc-tag{display:inline-block;font-size:0.57rem;letter-spacing:0.12em;text-transform:uppercase;
+  padding:3px 9px;margin-bottom:12px;font-weight:600}
+.pc-tag.gold{background:var(--gold);color:var(--dark)}
+.pc-tag.red{background:var(--maroon);color:var(--white)}
+.pc-name{font-family:'Cormorant Garamond',serif;font-size:1.15rem;font-weight:400;color:var(--dark);margin-bottom:5px}
+.pc-desc{font-size:0.7rem;line-height:1.6;color:var(--warm-gray);margin-bottom:12px}
+.pc-price-old{font-size:0.7rem;color:var(--warm-gray);text-decoration:line-through}
+.pc-price{font-family:'Cormorant Garamond',serif;font-size:1.5rem;font-weight:500;color:var(--gold)}
+.pc-disc{background:var(--maroon);color:var(--white);font-size:0.58rem;font-weight:700;
+  padding:2px 7px;margin-left:6px;letter-spacing:0.06em;vertical-align:middle}
+.pc-items{margin:10px 0 16px;display:flex;flex-direction:column;gap:3px}
+.pc-item{font-size:0.67rem;color:var(--warm-gray)}
+.pc-item::before{content:'✓ ';color:var(--gold)}
+.pc-cta{background:transparent;border:1px solid rgba(199,168,107,0.35);color:var(--gold);
+  padding:9px 18px;font-family:'Manrope',sans-serif;font-size:0.67rem;letter-spacing:0.12em;
+  text-transform:uppercase;cursor:pointer;transition:all 0.3s;width:100%;margin-top:auto}
+.pc-cta:hover{background:var(--gold);color:var(--dark);border-color:var(--gold)}
+.promo-sep{height:1px;background:rgba(199,168,107,0.15);margin:8px 0 48px}
+
+/* ════════════════════════════════
+   PAGE: TREATMENTS
+════════════════════════════════ */
+.treat-hero{background:var(--nude);padding:120px 64px 64px;display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:center}
+.treat-hero h1{font-family:'Cormorant Garamond',serif;font-size:clamp(2.5rem,4.5vw,3.8rem);
+  font-weight:300;color:var(--dark);line-height:1.15;margin-bottom:16px}
+.treat-hero h1 em{font-style:italic;color:var(--gold)}
+.treat-hero p{font-size:0.84rem;line-height:1.85;color:var(--warm-gray)}
+.treat-hero-img{background:linear-gradient(135deg,var(--champagne),#C4AA90);
+  height:320px;display:flex;align-items:center;justify-content:center;
+  font-size:5rem;position:relative;overflow:hidden}
+.treat-hero-img::after{content:'';position:absolute;inset:0;
+  background:linear-gradient(135deg,rgba(255,255,255,0.1),transparent)}
+
+.treat-categories{display:flex;gap:8px;padding:32px 64px;border-bottom:1px solid rgba(199,168,107,0.15);flex-wrap:wrap}
+.cat-btn{padding:8px 20px;font-family:'Manrope',sans-serif;font-size:0.67rem;letter-spacing:0.1em;
+  text-transform:uppercase;cursor:pointer;transition:all 0.3s;border:1px solid rgba(199,168,107,0.25);
+  background:transparent;color:var(--warm-gray)}
+.cat-btn.active,.cat-btn:hover{background:var(--gold);color:var(--dark);border-color:var(--gold)}
+
+.treat-section{padding:56px 64px}
+.treat-section-heading{display:flex;align-items:baseline;gap:16px;margin-bottom:32px}
+.treat-section-heading h2{font-family:'Cormorant Garamond',serif;font-size:1.7rem;font-weight:300;color:var(--dark)}
+.treat-section-heading span{font-size:0.68rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--warm-gray)}
+.treat-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.treat-card{background:var(--white);border:1px solid rgba(199,168,107,0.1);
+  transition:all 0.3s;cursor:pointer;display:flex;flex-direction:column;overflow:hidden}
+.treat-card:hover{border-color:var(--gold);box-shadow:0 8px 30px rgba(199,168,107,0.12);transform:translateY(-4px)}
+.treat-photo{height:150px;flex-shrink:0}
+.treat-body{padding:22px 22px 26px;display:flex;flex-direction:column;flex:1}
+.treat-card-name{font-family:'Cormorant Garamond',serif;font-size:1.08rem;font-weight:500;
+  color:var(--dark);margin-bottom:6px}
+.treat-card-desc{font-size:0.7rem;line-height:1.65;color:var(--warm-gray);flex:1;margin-bottom:14px}
+.treat-card-items{display:flex;flex-direction:column;gap:3px;margin-bottom:14px}
+.treat-card-item{font-size:0.65rem;color:var(--warm-gray)}
+.treat-card-item::before{content:'· ';color:var(--gold)}
+.treat-card-price{font-size:0.65rem;letter-spacing:0.08em;text-transform:uppercase;color:var(--gold);margin-top:auto}
+.treat-card-price span{font-family:'Cormorant Garamond',serif;font-size:0.95rem;font-weight:500}
+
+/* ════════════════════════════════
+   PAGE: DOCTORS
+════════════════════════════════ */
+.doc-hero{background:var(--dark);padding:120px 64px 64px;text-align:center}
+.doc-hero h1{font-family:'Cormorant Garamond',serif;font-size:clamp(2.5rem,4.5vw,3.8rem);
+  font-weight:300;color:var(--ivory);margin-bottom:12px}
+.doc-hero h1 em{font-style:italic;color:var(--gold)}
+.doc-hero p{font-size:0.82rem;color:rgba(169,162,155,0.85);max-width:480px;margin:0 auto;line-height:1.8}
+
+.doctor-full-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;padding:64px}
+.doc-full-card{background:var(--white);border:1px solid rgba(199,168,107,0.15);overflow:hidden;transition:all 0.3s;display:flex;flex-direction:column;}
+.doc-full-card:hover{border-color:var(--gold);box-shadow:0 12px 44px rgba(199,168,107,0.15)}
+.doc-photo{height:280px;flex-shrink:0;position:relative}
+.doc-photo-overlay{position:absolute;bottom:0;left:0;right:0;height:80px;
+  background:linear-gradient(to top,rgba(43,43,43,0.5),transparent);z-index:1}
+.doc-photo-name{position:absolute;bottom:16px;left:20px;right:20px;z-index:2}
+.doc-photo-name .doc-full-name{font-family:'Cormorant Garamond',serif;font-size:1.25rem;
+  font-weight:500;color:var(--white);margin-bottom:2px;text-shadow:0 1px 4px rgba(0,0,0,0.3)}
+.doc-photo-name .doc-full-cred{font-size:0.58rem;letter-spacing:0.12em;text-transform:uppercase;
+  color:rgba(255,255,255,0.8)}
+.doc-card-body{padding:24px 26px 30px;flex:1}
+.doc-schedule-title{font-size:0.62rem;letter-spacing:0.16em;text-transform:uppercase;
+  color:var(--gold);margin-bottom:12px}
+.doc-sched-table{width:100%;border-collapse:collapse;margin-bottom:22px}
+.doc-sched-table td{font-size:0.72rem;padding:6px 0;color:var(--dark);border-bottom:1px solid var(--nude)}
+.doc-sched-table td:last-child{text-align:right;color:var(--warm-gray)}
+.sched-off{color:var(--maroon) !important}
+.doc-expertise-title{font-size:0.62rem;letter-spacing:0.16em;text-transform:uppercase;color:var(--gold);margin-bottom:10px}
+.doc-exp-tags{display:flex;flex-wrap:wrap;gap:5px;margin-bottom:22px}
+.doc-exp-tag{font-size:0.6rem;background:var(--nude);color:var(--warm-gray);padding:3px 9px}
+.doc-bio{font-size:0.72rem;line-height:1.75;color:var(--warm-gray);margin-bottom:22px;
+  border-left:2px solid rgba(199,168,107,0.3);padding-left:14px}
+.doc-slogan{font-family:'Cormorant Garamond',serif;font-size:0.92rem;font-style:italic;
+  color:var(--dark);margin-bottom:22px;line-height:1.6}
+.doc-book-btn{background:var(--gold);color:var(--white);border:none;padding:12px 0;
+  font-family:'Manrope',sans-serif;font-size:0.68rem;letter-spacing:0.14em;text-transform:uppercase;
+  cursor:pointer;transition:all 0.3s;width:100%}
+.doc-book-btn:hover{background:var(--dark)}
+
+/* ════════════════════════════════
+   PAGE: PRICELIST
+════════════════════════════════ */
+.price-hero{background:var(--nude);padding:120px 64px 48px;display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:center}
+.price-hero h1{font-family:'Cormorant Garamond',serif;font-size:clamp(2.4rem,4vw,3.5rem);
+  font-weight:300;color:var(--dark);line-height:1.15;margin-bottom:14px}
+.price-hero h1 em{font-style:italic;color:var(--gold)}
+.price-hero p{font-size:0.83rem;line-height:1.85;color:var(--warm-gray)}
+.price-note{display:flex;align-items:flex-start;gap:10px;background:rgba(199,168,107,0.1);
+  border:1px solid rgba(199,168,107,0.25);padding:16px 20px;margin-top:24px}
+.price-note-icon{color:var(--gold);font-size:1rem;flex-shrink:0}
+.price-note-text{font-size:0.72rem;line-height:1.65;color:var(--warm-gray)}
+.price-stat-row{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:rgba(199,168,107,0.15)}
+.price-stat{background:var(--nude);padding:28px;text-align:center}
+.price-stat-num{font-family:'Cormorant Garamond',serif;font-size:2.2rem;font-weight:500;color:var(--gold)}
+.price-stat-label{font-size:0.65rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--warm-gray);margin-top:4px}
+
+.price-content{padding:48px 64px}
+.accordion{border:1px solid rgba(199,168,107,0.15);margin-bottom:12px}
+.accordion-head{display:flex;align-items:center;justify-content:space-between;padding:22px 28px;
+  cursor:pointer;background:var(--white);transition:background 0.3s;user-select:none}
+.accordion-head:hover{background:var(--nude)}
+.accordion-head h3{font-family:'Cormorant Garamond',serif;font-size:1.2rem;font-weight:400;color:var(--dark)}
+.accordion-head .acc-meta{font-size:0.65rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--warm-gray);margin-top:2px}
+.acc-right{display:flex;align-items:center;gap:16px}
+.acc-count{font-size:0.65rem;color:var(--warm-gray);background:var(--nude);padding:3px 10px}
+.acc-arrow{color:var(--gold);font-size:1rem;transition:transform 0.3s}
+.accordion.open .acc-arrow{transform:rotate(180deg)}
+.accordion-body{display:none;padding:0 28px 24px;background:var(--white)}
+.accordion.open .accordion-body{display:block}
+.price-table{width:100%;border-collapse:collapse}
+.price-table thead th{font-size:0.6rem;letter-spacing:0.14em;text-transform:uppercase;
+  color:var(--warm-gray);padding:12px 0;border-bottom:1px solid var(--nude);text-align:left}
+.price-table thead th:last-child{text-align:right}
+.price-table tbody tr{border-bottom:1px solid var(--nude);transition:background 0.2s}
+.price-table tbody tr:hover{background:var(--nude)}
+.price-table td{padding:14px 0;font-size:0.76rem;color:var(--dark);vertical-align:top}
+.price-table td:last-child{text-align:right}
+.price-table .t-name{font-weight:500;margin-bottom:2px}
+.price-table .t-desc{font-size:0.67rem;color:var(--warm-gray);line-height:1.5}
+.price-table .t-items{margin-top:6px;display:flex;flex-direction:column;gap:1px}
+.price-table .t-item{font-size:0.63rem;color:var(--warm-gray)}
+.price-table .t-item::before{content:'· ';color:var(--gold)}
+.price-normal{font-size:0.7rem;color:var(--warm-gray);text-decoration:line-through;margin-bottom:2px;text-align:right}
+.price-disc{font-family:'Cormorant Garamond',serif;font-size:1.1rem;font-weight:500;color:var(--gold)}
+.price-disc-badge{display:block;background:var(--maroon);color:var(--white);font-size:0.55rem;
+  padding:2px 6px;margin-top:2px;letter-spacing:0.06em;font-weight:700;text-align:right}
+
+
+/* ─── MAP SECTION ─── */
+.map-section{padding:80px 64px;background:var(--nude)}
+.map-section .section-title{margin-bottom:8px}
+.map-wrapper{display:grid;grid-template-columns:1fr 2fr;gap:40px;align-items:start;margin-top:48px}
+.map-info{display:flex;flex-direction:column;gap:0}
+.map-info-item{padding:20px 0;border-bottom:1px solid rgba(199,168,107,0.18)}
+.map-info-item:last-child{border:none}
+.map-info-label{font-size:0.6rem;letter-spacing:0.18em;text-transform:uppercase;color:var(--gold);margin-bottom:6px}
+.map-info-value{font-size:0.82rem;color:var(--dark);line-height:1.65}
+.map-info-value a{color:var(--gold);text-decoration:none}
+.map-info-value a:hover{color:var(--dark)}
+.map-embed{position:relative;overflow:hidden;border:1px solid rgba(199,168,107,0.2);background:var(--champagne)}
+.map-embed iframe{width:100%;height:400px;border:none;display:block;filter:sepia(15%) contrast(95%)}
+.map-embed-placeholder{height:400px;display:flex;flex-direction:column;align-items:center;
+  justify-content:center;gap:12px;background:linear-gradient(135deg,var(--champagne),#D4BFA8)}
+.map-pin{font-size:3rem;animation:float 3s ease-in-out infinite}
+.map-embed-label{font-family:'Cormorant Garamond',serif;font-size:1.1rem;color:var(--dark);font-weight:400}
+.map-embed-sub{font-size:0.72rem;color:var(--warm-gray);letter-spacing:0.08em}
+.map-open-btn{display:inline-flex;align-items:center;gap:8px;background:var(--gold);color:var(--white);
+  border:none;padding:10px 22px;font-family:'Manrope',sans-serif;font-size:0.68rem;
+  letter-spacing:0.14em;text-transform:uppercase;cursor:pointer;transition:all 0.3s;margin-top:16px;text-decoration:none}
+.map-open-btn:hover{background:var(--dark)}
+@media(max-width:900px){
+  .map-wrapper{grid-template-columns:1fr}
+  .map-section{padding:60px 24px}
+}
+/* ─── FOOTER ─── */
+footer{background:#1A1A1A;padding:56px 64px;display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:40px}
+.footer-logo{font-family:'Cormorant Garamond',serif;font-size:1.5rem;font-weight:500;
+  letter-spacing:0.06em;color:var(--ivory);display:block;margin-bottom:12px}
+.footer-logo span{color:var(--gold)}
+.footer-desc{font-size:0.74rem;line-height:1.8;color:var(--warm-gray);margin-bottom:20px}
+.footer-socials{display:flex;gap:8px}
+.soc{width:32px;height:32px;border:1px solid rgba(255,255,255,0.12);
+  display:flex;align-items:center;justify-content:center;font-size:0.7rem;
+  color:var(--warm-gray);cursor:pointer;transition:all 0.3s;text-decoration:none}
+.soc:hover{border-color:var(--gold);color:var(--gold)}
+.footer-col h4{font-size:0.6rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--ivory);margin-bottom:16px}
+.footer-col ul{list-style:none}
+.footer-col li{font-size:0.73rem;color:var(--warm-gray);margin-bottom:8px;cursor:pointer;transition:color 0.3s}
+.footer-col li:hover{color:var(--gold)}
+.footer-bottom{background:#1A1A1A;padding:16px 64px;border-top:1px solid rgba(255,255,255,0.06);
+  display:flex;justify-content:space-between;align-items:center}
+.footer-bottom p{font-size:0.68rem;color:rgba(169,162,155,0.5)}
+
+/* FLOATING WA */
+.wa-float{position:fixed;bottom:26px;right:26px;z-index:300;display:flex;align-items:center;gap:10px}
+.wa-tip{background:var(--white);color:var(--dark);font-size:0.66rem;letter-spacing:0.08em;
+  padding:7px 12px;box-shadow:0 4px 18px rgba(0,0,0,0.1);white-space:nowrap;
+  opacity:0;transform:translateX(8px);transition:all .3s;pointer-events:none}
+.wa-float:hover .wa-tip{opacity:1;transform:none}
+.wa-btn-f{width:52px;height:52px;background:#25D366;border-radius:50%;
+  display:flex;align-items:center;justify-content:center;font-size:1.3rem;
+  box-shadow:0 6px 22px rgba(37,211,102,0.4);cursor:pointer;transition:all .3s;
+  text-decoration:none;position:relative}
+.wa-btn-f:hover{transform:scale(1.1)}
+.wa-pulse{position:absolute;inset:0;border-radius:50%;background:rgba(37,211,102,0.35);animation:pulse 2s ease infinite}
+
+
+/* Card entrance animations */
+@keyframes cardIn{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:none}}
+.hp-card,.ht-card,.hd-card,.testi-card,.pc,.treat-card,.doc-full-card{
+  animation:cardIn 0.5s ease both;
+}
+.hp-card:nth-child(1),.ht-card:nth-child(1),.hd-card:nth-child(1),.pc:nth-child(1),.treat-card:nth-child(1){animation-delay:0.05s}
+.hp-card:nth-child(2),.ht-card:nth-child(2),.hd-card:nth-child(2),.pc:nth-child(2),.treat-card:nth-child(2){animation-delay:0.12s}
+.hp-card:nth-child(3),.ht-card:nth-child(3),.hd-card:nth-child(3),.pc:nth-child(3),.treat-card:nth-child(3){animation-delay:0.19s}
+.hp-card:nth-child(4),.ht-card:nth-child(4),.treat-card:nth-child(4){animation-delay:0.26s}
+.hp-card:nth-child(5),.ht-card:nth-child(5),.treat-card:nth-child(5){animation-delay:0.33s}
+.hp-card:nth-child(6),.ht-card:nth-child(6),.treat-card:nth-child(6){animation-delay:0.4s}
+.ht-card:nth-child(7),.treat-card:nth-child(7){animation-delay:0.47s}
+.ht-card:nth-child(8),.treat-card:nth-child(8){animation-delay:0.54s}
+
+/* Responsive */
+@media(max-width:900px){
+  nav{padding:0 20px}.nav-links{display:none}
+  .section,.promo-content,.treat-section,.price-content,.doctor-full-grid{padding:48px 20px}
+  .hero,.treat-hero,.price-hero,.booking-layout{grid-template-columns:1fr}
+  .hero-right,.treat-hero-img{display:none}
+  .hero-left{padding:110px 24px 60px}
+  .home-promo-grid,.home-treat-grid,.home-doc-row,.testi-grid,
+  .promo-grid-full,.treat-grid,.doctor-full-grid{grid-template-columns:1fr}
+  .promo-hero,.doc-hero{padding:110px 24px 48px}
+  .treat-hero,.price-hero{padding:110px 24px 48px}
+  .treat-categories,.price-stat-row{padding:20px}
+  footer{grid-template-columns:1fr;padding:36px 20px}
+  .footer-bottom{padding:14px 20px;flex-direction:column;gap:6px;text-align:center}
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo" onclick="goto('home')">K<span>iona</span> Skin Clinic</div>
+  <ul class="nav-links">
+    <li><a id="nav-home" onclick="goto('home')">Home</a></li>
+    <li><a id="nav-promo" onclick="goto('promo')">Promo</a></li>
+    <li><a id="nav-treatments" onclick="goto('treatments')">Treatments</a></li>
+    <li><a id="nav-doctors" onclick="goto('doctors')">Dokter</a></li>
+    <li><a id="nav-pricelist" onclick="goto('pricelist')">Pricelist</a></li>
+  </ul>
+  <button class="nav-cta" onclick="goto('home');setTimeout(()=>document.getElementById('booking').scrollIntoView({behavior:'smooth'}),100)">Book Now</button>
+</nav>
+
+<!-- ══════════════ PAGE: HOME ══════════════ -->
+<div id="page-home" class="page active">
+
+  <section class="hero">
+    <div class="hero-left">
+      <p class="hero-eyebrow">✦ Aesthetic Clinic · Banjarbaru, Kalimantan Selatan</p>
+      <h1 class="hero-title">Healthy Skin,<br><em>Timeless</em><br>Confidence</h1>
+      <p class="hero-sub">Perawatan estetika medis yang dipersonalisasi — ditangani langsung oleh dokter bersertifikat dengan teknologi modern.</p>
+      <div class="hero-actions">
+        <button class="btn-gold" onclick="goto('home');setTimeout(()=>document.getElementById('booking').scrollIntoView({behavior:'smooth'}),100)">Book Konsultasi</button>
+        <button class="btn-outline" onclick="goto('treatments')">Lihat Treatments</button>
+      </div>
+      <div class="hero-stats">
+        <div><div class="stat-num">5.000+</div><div class="stat-label">Happy Patients</div></div>
+        <div><div class="stat-num">3</div><div class="stat-label">Dokter Spesialis</div></div>
+        <div><div class="stat-num">4.9★</div><div class="stat-label">Google Rating</div></div>
+      </div>
+    </div>
+    <div class="hero-right">
+      <div class="hero-bg"></div>
+      <div class="hero-overlay"></div>
+      <div class="hero-visual"><div class="hero-orb"></div></div>
+      <div class="hero-badge">
+        <span style="color:var(--gold)">✦</span>
+        <span class="badge-label">Certified Aesthetic</span>
+        <span class="badge-val">Medical Grade</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- Promo Preview -->
+  <section class="section" style="background:var(--dark)">
+    <p class="section-tag" style="color:var(--gold-light)">✦ Promo Mei 2026</p>
+    <h2 class="section-title" style="color:var(--ivory)">Penawaran Bulan Ini</h2>
+    <p class="section-sub" style="color:rgba(232,221,207,0.75);margin-bottom:36px">Diskon hingga 65% untuk berbagai treatment. Tiga promo terpopuler bulan ini:</p>
+    <div class="home-promo-grid">
+      <div class="hp-card" style="background:#343030;border-color:rgba(199,168,107,0.1)">
+        <div class="hp-photo photo-holder"><span class="photo-holder-icon">🌿</span><span class="photo-holder-label">Promo Photo</span></div>
+        <div class="hp-body">
+          <span class="hp-tag red">🔥 Terlaris</span>
+          <div class="hp-name" style="color:var(--ivory)">Serenity 1</div>
+          <div class="hp-desc">Cerahkan kulit kusam & samarkan noda hitam dalam 1 treatment</div>
+          <div class="hp-price-old">Rp 900.000</div>
+          <div class="hp-price" style="display:flex;align-items:center">Rp 300rb<span class="hp-disc">DISC 67%</span></div>
+          <div class="hp-cta" onclick="goto('promo')">Lihat semua promo</div>
+        </div>
+      </div>
+      <div class="hp-card" style="background:#343030;border-color:rgba(199,168,107,0.1)">
+        <div class="hp-photo photo-holder"><span class="photo-holder-icon">🌟</span><span class="photo-holder-label">Promo Photo</span></div>
+        <div class="hp-body">
+          <span class="hp-tag">✨ Best Value</span>
+          <div class="hp-name" style="color:var(--ivory)">May Bright 1</div>
+          <div class="hp-desc">Glass skin instan — tanpa downtime, cocok untuk semua jenis kulit</div>
+          <div class="hp-price-old">Rp 1.950.000</div>
+          <div class="hp-price" style="display:flex;align-items:center">Rp 850rb<span class="hp-disc">DISC 56%</span></div>
+          <div class="hp-cta" onclick="goto('promo')">Lihat semua promo</div>
+        </div>
+      </div>
+      <div class="hp-card" style="background:#343030;border-color:rgba(199,168,107,0.1)">
+        <div class="hp-photo photo-holder"><span class="photo-holder-icon">✨</span><span class="photo-holder-label">Promo Photo</span></div>
+        <div class="hp-body">
+          <span class="hp-tag red">👑 Premium</span>
+          <div class="hp-name" style="color:var(--ivory)">Glow Up 1</div>
+          <div class="hp-desc">Regenerasi kulit intensif — DNA Salmon + IPL Toning serba 1.5jt</div>
+          <div class="hp-price-old">Rp 3.500.000</div>
+          <div class="hp-price" style="display:flex;align-items:center">Rp 1.500jt<span class="hp-disc">DISC 57%</span></div>
+          <div class="hp-cta" onclick="goto('promo')">Lihat semua promo</div>
+        </div>
+      </div>
+    </div>
+    <div style="text-align:center;margin-top:36px">
+      <button class="btn-gold"><a href="https://drive.google.com/file/d/1JRhE9XQcx7L0e-gK1g9bMAJnQz0jt3MV/view" target="_blank">Lihat Semua Promo Mei 2026 →</a></button>
+    </div>
+  </section>
+
+  <!-- Treatments Preview -->
+  <section class="section treatments-section">
+    <p class="section-tag">✦ Our Services</p>
+    <h2 class="section-title">Treatment Pilihan</h2>
+    <p class="section-sub">Dari perawatan dasar hingga prosedur premium — semua tersedia di Kiona.</p>
+    <div class="home-treat-grid">
+      <div class="ht-card"><div class="ht-photo photo-holder"><span class="photo-holder-icon">✦</span><span class="photo-holder-label">Treatment Photo</span></div><div class="ht-body"><div class="ht-name">Facial & Basic Care</div><div class="ht-desc">Facial acne, brightening, hydra, oxygen facial</div><div class="ht-from">Mulai <span>Rp 300rb</span></div></div></div>
+      <div class="ht-card"><div class="ht-photo photo-holder"><span class="photo-holder-icon">◈</span><span class="photo-holder-label">Treatment Photo</span></div><div class="ht-body"><div class="ht-name">Laser Treatment</div><div class="ht-desc">IPL toning, shower toning, laser baby skin</div><div class="ht-from">Mulai <span>Rp 550rb</span></div></div></div>
+      <div class="ht-card"><div class="ht-photo photo-holder"><span class="photo-holder-icon">◇</span><span class="photo-holder-label">Treatment Photo</span></div><div class="ht-body"><div class="ht-name">Skinbooster</div><div class="ht-desc">DNA Salmon, Refine Glow, Glasskin, Luminous</div><div class="ht-from">Mulai <span>Rp 850rb</span></div></div></div>
+      <div class="ht-card"><div class="ht-photo photo-holder"><span class="photo-holder-icon">❋</span><span class="photo-holder-label">Treatment Photo</span></div><div class="ht-body"><div class="ht-name">Botox & Filler</div><div class="ht-desc">Botox rahang, dahi, filler dagu Korea Premium</div><div class="ht-from">Mulai <span>Rp 2.500jt</span></div></div></div>
+      <div class="ht-card"><div class="ht-photo photo-holder"><span class="photo-holder-icon">✿</span><span class="photo-holder-label">Treatment Photo</span></div><div class="ht-body"><div class="ht-name">Threadlift</div><div class="ht-desc">Hidung K-Kiona & Aptos, apple cheeks, under eye</div><div class="ht-from">Mulai <span>Rp 2.300jt</span></div></div></div>
+      <div class="ht-card"><div class="ht-photo photo-holder"><span class="photo-holder-icon">⬡</span><span class="photo-holder-label">Treatment Photo</span></div><div class="ht-body"><div class="ht-name">Chemical Peeling</div><div class="ht-desc">Lhalapeel Glow, Bubble, Hollywood Silk Peel</div><div class="ht-from">Mulai <span>Rp 485rb</span></div></div></div>
+      <div class="ht-card"><div class="ht-photo photo-holder"><span class="photo-holder-icon">⊹</span><span class="photo-holder-label">Treatment Photo</span></div><div class="ht-body"><div class="ht-name">HIFU & RF</div><div class="ht-desc">HIFU cheeks & chin, RF face tightening</div><div class="ht-from">Mulai <span>Rp 2.500jt</span></div></div></div>
+      <div class="ht-card"><div class="ht-photo photo-holder"><span class="photo-holder-icon">◉</span><span class="photo-holder-label">Treatment Photo</span></div><div class="ht-body"><div class="ht-name">Mesolipo & Slimming</div><div class="ht-desc">Mesolipo cheeks & chin untuk wajah lebih tirus</div><div class="ht-from">Mulai <span>Rp 2.500jt</span></div></div></div>
+    </div>
+    <div style="text-align:center;margin-top:40px">
+      <button class="btn-outline" onclick="goto('treatments')"><a href="https://drive.google.com/file/d/19GIwG9Gb9L4eeHuPBhvGzVu5cfGdH6HQ/view" target="_blank">Lihat Detail Semua Treatment →</a></button>
+    </div>
+  </section>
+
+  <!-- Doctors Preview -->
+  <section class="section" style="background:var(--nude)">
+    <p class="section-tag">✦ Our Specialists</p>
+    <h2 class="section-title">Tim Dokter Kami</h2>
+    <p class="section-sub">Ditangani langsung oleh dokter estetika bersertifikat di Kiona Skin Clinic Banjarbaru.</p>
+    <div class="home-doc-row">
+      <div class="hd-card">
+        <div class="hd-photo photo-holder"><span class="photo-holder-icon">👩‍⚕️</span><span class="photo-holder-label">Doctor Photo</span></div>
+        <div class="hd-body"><div class="hd-name">dr. Rizki Padelia</div><div class="hd-cred">M.Biomed (AAM)</div><div class="hd-tags"><span class="hd-tag">Anti Aging</span><span class="hd-tag">Threadlift</span><span class="hd-tag">Botox & Filler</span></div><div class="hd-link" onclick="goto('doctors')">Lihat profil lengkap →</div></div>
+      </div>
+      <div class="hd-card">
+        <div class="hd-photo photo-holder"><span class="photo-holder-icon">👩‍⚕️</span><span class="photo-holder-label">Doctor Photo</span></div>
+        <div class="hd-body"><div class="hd-name">dr. Tasya Novanda Putri</div><div class="hd-cred">Aesthetic Skin Quality</div><div class="hd-tags"><span class="hd-tag">Acne Specialist</span><span class="hd-tag">Hiperpigmentasi</span><span class="hd-tag">Anti Aging</span></div><div class="hd-link" onclick="goto('doctors')">Lihat profil lengkap →</div></div>
+      </div>
+      <div class="hd-card">
+        <div class="hd-photo photo-holder"><span class="photo-holder-icon">👩‍⚕️</span><span class="photo-holder-label">Doctor Photo</span></div>
+        <div class="hd-body"><div class="hd-name">dr. Laily Alfisahrinie</div><div class="hd-cred">Aesthetic & Dermatology</div><div class="hd-tags"><span class="hd-tag">Acne & Scar</span><span class="hd-tag">Skin Quality</span><span class="hd-tag">Slimming</span></div><div class="hd-link" onclick="goto('doctors')">Lihat profil lengkap →</div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Testimonials -->
+  <section class="section testi-section">
+    <p class="section-tag">✦ Patient Stories</p>
+    <h2 class="section-title">Apa Kata Mereka</h2>
+    <p class="section-sub">Ribuan pasien telah mempercayai Kiona Skin Clinic untuk perjalanan kecantikan mereka.</p>
+    <div class="testi-grid">
+      <div class="testi-card">
+        <div class="testi-stars">★★★★★</div>
+        <div class="testi-q">"Jerawat saya yang sudah bertahun-tahun akhirnya bisa diatasi. Dokternya sabar banget dan hasilnya luar biasa dalam 3 sesi."</div>
+        <div class="testi-auth"><div class="testi-av">😊</div><div><div class="testi-name">Rahma A.</div><div class="testi-treat">Acne Treatment · dr. Laily</div></div></div>
+      </div>
+      <div class="testi-card">
+        <div class="testi-stars">★★★★★</div>
+        <div class="testi-q">"Coba Glow Up package dan hasilnya wow! Kulit langsung cerah dan glowing. dr. Rizki sangat profesional dan detail menjelaskan prosedurnya."</div>
+        <div class="testi-auth"><div class="testi-av">🙂</div><div><div class="testi-name">Siti M.</div><div class="testi-treat">Glow Up 1 · dr. Rizki</div></div></div>
+      </div>
+      <div class="testi-card">
+        <div class="testi-stars">★★★★★</div>
+        <div class="testi-q">"Sudah 4 bulan rutin treatment di Kiona. Flek hitam berkurang drastis, kulit lebih rata dan cerah. Pelayanannya sangat premium."</div>
+        <div class="testi-auth"><div class="testi-av">😄</div><div><div class="testi-name">Dewi P.</div><div class="testi-treat">Brightening Program · dr. Tasya</div></div></div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- MAP SECTION -->
+  <section class="map-section">
+    <p class="section-tag">✦ Temukan Kami</p>
+    <h2 class="section-title">Lokasi Kiona<br>Skin Clinic</h2>
+    <div class="map-wrapper">
+      <div class="map-info">
+        <div class="map-info-item">
+          <div class="map-info-label">Alamat</div>
+          <div class="map-info-value">Jl. Ir. P. M. Noor Sungai Ulin<br>Sungai Besar, Kota Banjarbaru<br>Kalimantan Selatan</div>
+        </div>
+        <div class="map-info-item">
+          <div class="map-info-label">Jam Buka</div>
+          <div class="map-info-value">
+            Senin &amp; Selasa: 11.00 – 20.00 WITA<br>
+            Rabu – Minggu: 11.00 – 17.00 WITA
+          </div>
+        </div>
+        <div class="map-info-item">
+          <div class="map-info-label">Reservasi</div>
+          <div class="map-info-value"><a href="https://wa.me/6281250166161">081250166161</a></div>
+        </div>
+        <div class="map-info-item">
+          <div class="map-info-label">Konsultasi Awal</div>
+          <div class="map-info-value">Gratis untuk kunjungan pertama</div>
+        </div>
+        <a class="map-open-btn" href="https://maps.google.com/?q=Kiona+Skin+Clinic+Banjarbaru" target="_blank">
+          📍 Buka di Google Maps
+        </a>
+      </div>
+      <div class="map-embed">
+        <iframe
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15965.123!2d114.837!3d-3.441!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2de423a2a23dde9b%3A0x6d8d6c1e3c8f2f1a!2sKiona%20Skin%20Clinic!5e0!3m2!1sid!2sid!4v1700000000000!5m2!1sid!2sid"
+          allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"
+          title="Lokasi Kiona Skin Clinic Banjarbaru">
+        </iframe>
+        <div style="position:absolute;bottom:0;left:0;right:0;background:linear-gradient(to top,rgba(248,246,242,0.6),transparent);height:60px;pointer-events:none"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Booking -->
+  <section class="section booking-section" id="booking">
+    <div class="booking-layout">
+      <div>
+        <p class="section-tag">✦ Book Appointment</p>
+        <h2 class="section-title">Booking<br>Konsultasi</h2>
+        <p class="section-sub">Isi form — kami konfirmasi jadwal via WhatsApp.</p>
+        <div class="form-group"><label class="form-label">Nama Lengkap</label><input class="form-input" type="text" placeholder="Masukkan nama Anda" id="f-name"></div>
+        <div class="form-group"><label class="form-label">Pilih Treatment</label>
+          <select class="form-select" id="f-treat">
+            <option value="">-- Pilih Treatment --</option>
+            <option>Facial Basic / Brightening (mulai Rp 300rb)</option>
+            <option>Laser Treatment (mulai Rp 550rb)</option>
+            <option>Skinbooster (mulai Rp 850rb)</option>
+            <option>Chemical Peeling (mulai Rp 485rb)</option>
+            <option>Botox & Filler</option>
+            <option>Threadlift Hidung</option>
+            <option>HIFU / RF Tightening</option>
+            <option>Promo Serenity 1 — Rp 300rb</option>
+            <option>Promo May Bright 1 — Rp 850rb</option>
+            <option>Promo Mei Cantik 1 — Rp 900rb</option>
+            <option>Promo Glow Up 1 — Rp 1.5jt</option>
+            <option>Promo Mei V Shape 1 — Rp 2.5jt</option>
+          </select>
+        </div>
+        <div class="form-group"><label class="form-label">Pilih Dokter</label>
+          <select class="form-select" id="f-doc">
+            <option value="">-- Pilih Dokter --</option>
+            <option>dr. Rizki Padelia, M.Biomed (AAM)</option>
+            <option>dr. Tasya Novanda Putri</option>
+            <option>dr. Laily Alfisahrinie</option>
+          </select>
+        </div>
+        <div class="form-group"><label class="form-label">Nomor WhatsApp</label><input class="form-input" type="tel" placeholder="08xx-xxxx-xxxx" id="f-wa"></div>
+        <div class="form-group"><label class="form-label">Tanggal Preferensi</label><input class="form-input" type="date" id="f-date"></div>
+        <button class="btn-gold" style="width:100%;margin-top:8px;text-align:center" onclick="sendWA()">Kirim via WhatsApp →</button>
+      </div>
+      <div>
+        <div class="info-row"><div class="info-icon">📍</div><div><div class="info-label">Lokasi</div><div class="info-val">Jl. Ir. P. M. Noor Sungai Ulin<br>Sungai Besar, Kota Banjarbaru</div></div></div>
+        <div class="info-row"><div class="info-icon">🕐</div><div><div class="info-label">Jam Operasional</div><div class="info-val">Senin–Selasa: 11.00–20.00 WITA<br>Rabu–Minggu: 11.00–17.00 WITA</div></div></div>
+        <div class="info-row"><div class="info-icon">📞</div><div><div class="info-label">Reservasi & Info</div><div class="info-val">081250166161</div></div></div>
+        <div class="info-row"><div class="info-icon">✦</div><div><div class="info-label">Konsultasi Awal</div><div class="info-val">Gratis untuk kunjungan pertama</div></div></div>
+      </div>
+    </div>
+  </section>
+</div>
+<footer>
+  <div>
+    <span class="footer-logo">K<span>iona</span> Skin Clinic</span>
+    <p class="footer-desc">Klinik kecantikan estetika medis di Banjarbaru, Kalimantan Selatan. Melayani dengan standar premium sejak 2022.</p>
+    <div class="footer-socials">
+      <a class="soc" href="#">ig</a>
+      <a class="soc" href="#">tt</a>
+      <a class="soc" href="https://wa.me/6281250166161">wa</a>
+    </div>
+  </div>
+  <div class="footer-col">
+    <h4>Halaman</h4>
+    <ul>
+      <li onclick="goto('home')">Home</li>
+      <li onclick="goto('promo')">Promo Mei 2026</li>
+      <li onclick="goto('treatments')">Treatments</li>
+      <li onclick="goto('doctors')">Dokter</li>
+      <li onclick="goto('pricelist')">Pricelist</li>
+    </ul>
+  </div>
+  <div class="footer-col">
+    <h4>Treatments</h4>
+    <ul>
+      <li>Facial & Laser</li>
+      <li>Skinbooster</li>
+      <li>Botox & Filler</li>
+      <li>Threadlift</li>
+      <li>HIFU & RF</li>
+    </ul>
+  </div>
+  <div class="footer-col">
+    <h4>Kontak</h4>
+    <ul>
+      <li>Jl. Ir. P.M. Noor Sungai Ulin</li>
+      <li>Banjarbaru, Kalsel</li>
+      <li>081250166161</li>
+      <li>@kionaskinclinic</li>
+    </ul>
+  </div>
+</footer>
+<div class="footer-bottom">
+  <p>© 2026 Kiona Skin Clinic Banjarbaru. All rights reserved.</p>
+  <p style="color:rgba(199,168,107,0.45)">Periode Promo: Mei 2026</p>
+</div>
+
+<!-- FLOATING WA -->
+<div class="wa-float">
+  <div class="wa-tip">Chat 081250166161</div>
+  <a class="wa-btn-f" href="https://wa.me/6281250166161?text=Halo Kiona Skin Clinic, saya ingin konsultasi" target="_blank">
+    <div class="wa-pulse"></div>💬
+  </a>
+</div>
